@@ -16,7 +16,7 @@ import javax.ws.rs.core.SecurityContext;
  *
  * @author lam@cphbusiness.dk
  */
-@Path("demo")
+@Path("info")
 public class DemoResource {
 
     @Context
