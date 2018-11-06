@@ -13,77 +13,110 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements Serializable
+{
 
-  private static final long serialVersionUID = 1L;
-  @Id
-  @Basic(optional = false)
-  @NotNull
-  @Column(name = "user_name", length = 25)
-  private String userName;
-  @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 255)
-  @Column(name = "user_pass")
-  private String userPass;
-  @JoinTable(name = "user_roles", joinColumns = {
-    @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
-    @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
-  @ManyToMany
-  private List<Role> roleList = new ArrayList();
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "user_name", length = 25)
+    private String userName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "user_pass")
+    private String userPass;
+    @JoinTable(name = "user_roles", joinColumns =
+    {
+        @JoinColumn(name = "user_name", referencedColumnName = "user_name")
+    }, inverseJoinColumns =
+    {
+        @JoinColumn(name = "role_name", referencedColumnName = "role_name")
+    })
+    @ManyToMany
+    private List<Role> roleList = new ArrayList();
 
-  public List<String> getRolesAsStrings() {
-    if (roleList.isEmpty()) {
-      return null;
+    public List<String> getRolesAsStrings()
+    {
+        if (roleList.isEmpty())
+        {
+            return null;
+        }
+        List<String> rolesAsStrings = new ArrayList();
+        for (Role role : roleList)
+        {
+            rolesAsStrings.add(role.getRoleName());
+        }
+        return rolesAsStrings;
     }
-    List<String> rolesAsStrings = new ArrayList();
-    for (Role role : roleList) {
-      rolesAsStrings.add(role.getRoleName());
-    }
-    return rolesAsStrings;
-  }
 
-  public User() {}
-
-  //TODO Change when password is hashed
-   public boolean verifyPassword(String pw){
-        return(pw.equals(userPass));
+    public User()
+    {
     }
 
-  public User(String userName, String userPass) {
-    this.userName = userName;
- this.userPass = userPass; // replace, hash and salt this
-  }
+    //TODO Change when password is hashed
+    public boolean verifyPassword(String pw)
+    {
+        //return (pw.equals(userPass));        
 
-  public String getUserName() {
-    return userName;
-  }
+        if (BCrypt.checkpw(pw, this.userPass))
+        {
+            System.out.println("It matches");
+            return true;
+        } else
+        {
+            System.out.println("It does not match");
+            return false;
+        }
+    }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    public User(String userName, String userPass)
+    {
+        this.userName = userName;
+        this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
 
-  public String getUserPass() {
-    return this.userPass;
-  }
+        // Check that an unencrypted password matches one that has
+        // previously been hashed
+    }
 
-  public void setUserPass(String userPass) {
-    this.userPass = userPass;
-  }
+    public String getUserName()
+    {
+        return userName;
+    }
 
-  public List<Role> getRoleList() {
-    return roleList;
-  }
+    public void setUserName(String userName)
+    {
+        this.userName = userName;
+    }
 
-  public void setRoleList(List<Role> roleList) {
-    this.roleList = roleList;
-  }
+    public String getUserPass()
+    {
+        return this.userPass;
+    }
 
-  public void addRole(Role userRole) {
-    roleList.add(userRole);
-  }
+    public void setUserPass(String userPass)
+    {
+        this.userPass = userPass;
+    }
+
+    public List<Role> getRoleList()
+    {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList)
+    {
+        this.roleList = roleList;
+    }
+
+    public void addRole(Role userRole)
+    {
+        roleList.add(userRole);
+    }
 
 }
