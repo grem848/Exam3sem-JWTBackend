@@ -55,7 +55,7 @@ public class User implements Serializable {
 
   public User(String userName, String userPass) {
     this.userName = userName;
- this.userPass = userPass;
+ this.userPass = userPass; // replace, hash and salt this
   }
 
   public String getUserName() {
