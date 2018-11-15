@@ -1,5 +1,7 @@
 package threads;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -10,23 +12,26 @@ public class CallDemo implements Callable<String>
 {
 
     String url;
+    Gson gson;
 
     public CallDemo(String url)
     {
+        gson = new GsonBuilder().setPrettyPrinting().create();
         this.url = url;
     }
 
     @Override
     public String call() throws Exception
     {
-        String result = "Error";
+        Error error = new Error("Not fetched", url);
+        String jsonError = gson.toJson(error);
         try
         {
 
             URL siteURL = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) siteURL
                     .openConnection();
-            connection.setConnectTimeout(100);
+            connection.setConnectTimeout(1000);
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/json;charset=UTF-8");
             connection.setRequestProperty("User-Agent", "server");
@@ -43,7 +48,7 @@ public class CallDemo implements Callable<String>
 
         } catch (Exception e)
         {
-            return result;
+            return jsonError;
         }
 
     }

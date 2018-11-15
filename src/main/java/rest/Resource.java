@@ -22,7 +22,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import threads.CallDemo;
 
-
 @Path("info")
 public class Resource
 {
@@ -31,10 +30,10 @@ public class Resource
     private UriInfo context;
 
     ArrayBlockingQueue<String> urls = new ArrayBlockingQueue(5);
+    
 
     public String threadExecutor()
     {
-
         ExecutorService executor = Executors.newCachedThreadPool();
         List<Future<String>> list = new ArrayList<>();
         String response = "";
@@ -46,22 +45,24 @@ public class Resource
 
             list.add(future);
         }
-
+        response = "[";
         for (Future<String> fut : list)
         {
             try
             {
                 String fetchedData = fut.get();
-                response += fetchedData;
+                response += fetchedData + ",";
 
             } catch (InterruptedException | ExecutionException e)
             {
                 e.printStackTrace();
             }
         }
-
+//        response = gson.fromJson(response, String.class);
         executor.shutdown();
-        return response;
+        String substring = response.substring(0, response.length() - 1);
+        response = substring;
+        return response += "]";
     }
 
     @Context
@@ -94,7 +95,7 @@ public class Resource
     public String getSwapi(@PathParam("id") int id) throws MalformedURLException, IOException
     {
         URL url1 = new URL("https://swapi.co/api/people/" + id);
-        URL url2 = new URL("https://swapi.co/api/starships/" + id + 1);
+        URL url2 = new URL("https://swapi.co/api/starships/" + id );
         URL url3 = new URL("https://swapi.co/api/planets/" + id);
         URL url4 = new URL("https://swapi.co/api/species/" + id);
         URL url5 = new URL("https://swapi.co/api/films/" + id);
