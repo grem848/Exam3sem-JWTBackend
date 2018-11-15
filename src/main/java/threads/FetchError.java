@@ -2,12 +2,12 @@
 package threads;
 
 
-public class Error
+public class FetchError
 {
     private String error;
     private String url;
 
-    public Error(String error, String url)
+    public FetchError(String error, String url)
     {
         this.error = error;
         this.url = url;

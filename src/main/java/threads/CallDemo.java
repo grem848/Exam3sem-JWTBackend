@@ -23,7 +23,7 @@ public class CallDemo implements Callable<String>
     @Override
     public String call() throws Exception
     {
-        Error error = new Error("Not fetched", url);
+        FetchError error = new FetchError("Not fetched", url);
         String jsonError = gson.toJson(error);
         try
         {

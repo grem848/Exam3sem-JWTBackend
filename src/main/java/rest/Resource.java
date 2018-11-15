@@ -1,5 +1,7 @@
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,7 +32,6 @@ public class Resource
     private UriInfo context;
 
     ArrayBlockingQueue<String> urls = new ArrayBlockingQueue(5);
-    
 
     public String threadExecutor()
     {
@@ -95,7 +96,7 @@ public class Resource
     public String getSwapi(@PathParam("id") int id) throws MalformedURLException, IOException
     {
         URL url1 = new URL("https://swapi.co/api/people/" + id);
-        URL url2 = new URL("https://swapi.co/api/starships/" + id );
+        URL url2 = new URL("https://swapi.co/api/starships/" + id);
         URL url3 = new URL("https://swapi.co/api/planets/" + id);
         URL url4 = new URL("https://swapi.co/api/species/" + id);
         URL url5 = new URL("https://swapi.co/api/films/" + id);
