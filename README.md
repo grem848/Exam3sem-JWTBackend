@@ -1,6 +1,6 @@
 # Quick Start Project
 
-Guide to create a basic project with Reactjs and Java.
+A “Quick Start Project” for JAX-RS, React and React Native based applications
 
 ## Guide
 
