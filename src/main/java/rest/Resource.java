@@ -59,7 +59,6 @@ public class Resource
                 e.printStackTrace();
             }
         }
-//        response = gson.fromJson(response, String.class);
         executor.shutdown();
         String substring = response.substring(0, response.length() - 1);
         response = substring;
@@ -92,7 +91,7 @@ public class Resource
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("swapi/{id}")
-//    @RolesAllowed("admin") // rolesallowed doesnt allow admins
+    @RolesAllowed("admin") // rolesallowed doesnt allow admins
     public String getSwapi(@PathParam("id") int id) throws MalformedURLException, IOException
     {
         URL url1 = new URL("https://swapi.co/api/people/" + id);
