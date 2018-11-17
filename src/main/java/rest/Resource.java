@@ -52,7 +52,9 @@ public class Resource
             try
             {
                 String fetchedData = fut.get();
-                response += fetchedData + ",";
+                if (!fetchedData.contains("error")) {
+                    response += fetchedData + ",";
+                }
 
             } catch (InterruptedException | ExecutionException e)
             {
