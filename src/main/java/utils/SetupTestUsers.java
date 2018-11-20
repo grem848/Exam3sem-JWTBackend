@@ -1,7 +1,10 @@
 package utils;
 
-import entity.Role;
-import entity.User;
+import entity.CityInfo;
+import entity.Restaurant;
+import facade.RestaurantFacade;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -9,36 +12,14 @@ public class SetupTestUsers {
 
   public static void main(String[] args) {
 
-    EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+        RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
     
-    // IMPORTAAAAAAAAAANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // This breaks one of the MOST fundamental security rules in that it ships with default users and passwords
-    // CHANGE the three passwords below, before you uncomment and execute the code below
-    
-    // throw new UnsupportedOperationException("REMOVE THIS LINE, WHEN YOU HAVE READ WARNING");
-    
+        Collection<Restaurant> restaurants = new ArrayList();
+        String test = "test";
         
-    em.getTransaction().begin();
-//    Role userRole = new Role("user");
-    Role adminRole = new Role("admin");
-//    User user = new User("user", "test");
-//    user.addRole(userRole);
-    User admin = new User("admin", "test");
-    admin.addRole(adminRole);
-//    User both = new User("user_admin", "test");
-//    both.addRole(userRole);
-//    both.addRole(adminRole);
-//    em.persist(userRole);
-    em.persist(adminRole);
-//    em.persist(user);
-    em.persist(admin);
-//    em.persist(both);
-    em.getTransaction().commit();
-    System.out.println("PW: " + admin.getUserPass());
-    System.out.println("Testing user with OK password: " + admin.verifyPassword("test"));
-    System.out.println("Testing user with wrong password: " + admin.verifyPassword("test1"));
-    System.out.println("Created TEST Users");
-   
-  }
+        CityInfo cityInfo = new CityInfo(3000, "Helsingør");
+        Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
 
+        rf.addRestaurant(res); 
+  }
 }
