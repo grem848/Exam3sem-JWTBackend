@@ -1,11 +1,12 @@
 package utils;
 
+import DTO.RestaurantDTO;
 import entity.CityInfo;
 import entity.Restaurant;
 import facade.RestaurantFacade;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.EntityManager;
+import java.util.List;
 import javax.persistence.Persistence;
 
 public class SetupTestUsers {
@@ -21,5 +22,7 @@ public class SetupTestUsers {
         Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
 
         rf.addRestaurant(res); 
+        List<RestaurantDTO> l = rf.getAllRestuarants();
+        System.out.println(l.toString());
   }
 }

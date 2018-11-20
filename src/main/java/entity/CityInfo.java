@@ -7,7 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +31,7 @@ public class CityInfo implements Serializable {
     private String city;
 
     @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.PERSIST)
-    private Collection<Restaurant> restaurants = new ArrayList<>();
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     public CityInfo() {
     }
@@ -57,11 +57,11 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
-    public Collection<Restaurant> getRestaurants() {
+    public List<Restaurant> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(Collection<Restaurant> restaurants) {
+    public void setRestaurants(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
     
