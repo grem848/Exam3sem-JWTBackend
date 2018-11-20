@@ -21,6 +21,7 @@ public class MultiThreadPingerDemo
     public static void main(String[] args) throws IOException
     {
 
+        
         ArrayBlockingQueue<String> urls = new ArrayBlockingQueue(5);
 
         urls.add("https://swapi.co/api/people/1");
