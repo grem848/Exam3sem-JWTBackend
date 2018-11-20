@@ -8,13 +8,13 @@ import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 
-public class CallDemo implements Callable<String>
+public class Call implements Callable<String>
 {
 
     String url;
     Gson gson;
 
-    public CallDemo(String url)
+    public Call(String url)
     {
         gson = new GsonBuilder().setPrettyPrinting().create();
         this.url = url;
