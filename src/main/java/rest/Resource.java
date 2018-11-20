@@ -62,7 +62,7 @@ public class Resource
             }
         }
         executor.shutdown();
-        String substring = response.substring(0, response.length() - 1);
+        String substring = response.substring(0, response.length() - 1); // if all fails ] will be deleted here
         response = substring;
         return response += "]";
     }
@@ -77,7 +77,7 @@ public class Resource
     public String getFromUser()
     {
         String user = securityContext.getUserPrincipal().getName();
-        return "\"Hello from USER: " + user + "\"";
+        return "\"Hello from USER: " + user + "\"";  // FRONTEND
     }
 
     @GET
