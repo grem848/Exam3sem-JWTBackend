@@ -86,8 +86,4 @@ public class RestaurantDTO {
     public String toString() {
         return "RestaurantDTO{" + "name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfo=" + cityInfo + '}';
     }
-    
-    
-    
-    
 }
