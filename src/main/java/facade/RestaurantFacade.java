@@ -16,23 +16,33 @@ import javax.persistence.TypedQuery;
  *
  * @author mohammahomarhariri
  */
-public class RestaurantFacade {
+public class RestaurantFacade
+{
 
     private EntityManagerFactory emf;
 
-    public RestaurantFacade(EntityManagerFactory emf) {
+    public RestaurantFacade(EntityManagerFactory emf)
+    {
         this.emf = emf;
     }
 
-    public RestaurantDTO addRestaurant(Restaurant restaurant) {
-        EntityManager em = emf.createEntityManager();
+    public EntityManager getEntityManager()
+    {
+        return emf.createEntityManager();
+    }
+
+    public RestaurantDTO addRestaurant(Restaurant restaurant)
+    {
+        EntityManager em = getEntityManager();
         RestaurantDTO res;
-        try {
+        try
+        {
 
             em.getTransaction().begin();
             em.persist(restaurant);
             em.getTransaction().commit();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             System.out.println(ex);
             em.close();
             return null;
@@ -43,28 +53,34 @@ public class RestaurantFacade {
         return null;
     }
 
-    public List<RestaurantDTO> getAllRestuarants() {
-        EntityManager em = emf.createEntityManager();
+    public List<RestaurantDTO> getAllRestuarants()
+    {
+        EntityManager em = getEntityManager();
         List<RestaurantDTO> restaurants = null;
 
-        try {
+        try
+        {
 
-            TypedQuery<RestaurantDTO> query = em.createQuery("SELECT p FROM Restaurant p", RestaurantDTO.class);
+            TypedQuery<RestaurantDTO> query = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p", RestaurantDTO.class);
+//            Long id, String name, String foodtype, String website, String address, String phone, CityInfoDTO cityInfoDTO)
 
-            if (query.getResultList().isEmpty() == true) {
+            if (query.getResultList().isEmpty() == true)
+            {
                 restaurants = null;
-            } else {
+            } else
+            {
                 restaurants = query.getResultList();
             }
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             System.out.println(ex);
             em.close();
         }
         return restaurants;
     }
 //        public Restaurant addRestaurant(Restaurant restaurant){
-//        EntityManager em = emf.createEntityManager();
+//        EntityManager em = getEntityManager();
 //        Restaurant res;
 //                
 //        Collection<Restaurant> ALL_RESTAURANTS_INSIDE_CITY = restaurant.getCityInfo().getRestaurants();

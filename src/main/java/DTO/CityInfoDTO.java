@@ -19,6 +19,10 @@ public class CityInfoDTO {
     private String city;
 
     private List<RestaurantDTO> list = new ArrayList<>();
+
+    public CityInfoDTO()
+    {
+    }
     
     public CityInfoDTO(int zipCode, String city) {
         this.zipCode = zipCode;

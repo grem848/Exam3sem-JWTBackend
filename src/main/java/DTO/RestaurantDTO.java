@@ -1,36 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DTO;
 
-import entity.CityInfo;
 import entity.Restaurant;
 
-/**
- *
- * @author mohammahomarhariri
- */
+
 public class RestaurantDTO {
     
     private Long id;
-    private String name,foodtype,website,address;
-    private int phone;
+    private String name, foodtype, website, address, phone;
     
-    private CityInfoDTO cityInfo;
+    private CityInfoDTO cityInfoDTO;
 
-    public RestaurantDTO(Restaurant res) {
+    public RestaurantDTO()
+    {
+    }
+
+    public RestaurantDTO(Restaurant res)
+    {
+        this.id = id;
+    }
+    
+    public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfoDTO cityInfoDTO) {
         
-        this.id = res.getId();
-        this.name = res.getName();
-        this.foodtype = res.getFoodtype();
-        this.address = res.getAddress();
-        this.website = res.getWebsite();
-        this.phone = res.getPhone();
+        this.id = id;
+        this.name = name;
+        this.foodtype = foodtype;
+        this.website = website;
+        this.address = address;
+        this.phone = phone;
         
-        this.cityInfo.setCity(res.getCityInfo().getCity());
-        this.cityInfo.setZipCode(res.getCityInfo().getZipCode());
+//        this.cityInfoDTO.setCity("Kongens Lyngby");
+//        this.cityInfoDTO.setZipCode(2800);
+//        this.cityInfoDTO.setCity(cityInfoDTO.getCity());
+//        this.cityInfoDTO.setZipCode(cityInfoDTO.getZipCode());
         
     }
 
@@ -66,24 +68,39 @@ public class RestaurantDTO {
         this.address = address;
     }
 
-    public int getPhone() {
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public String getPhone()
+    {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone)
+    {
         this.phone = phone;
     }
 
-    public CityInfoDTO getCityInfo() {
-        return cityInfo;
+    public CityInfoDTO getCityInfoDTO()
+    {
+        return cityInfoDTO;
     }
 
-    public void setCityInfo(CityInfoDTO cityInfo) {
-        this.cityInfo = cityInfo;
+    public void setCityInfoDTO(CityInfoDTO cityInfoDTO)
+    {
+        this.cityInfoDTO = cityInfoDTO;
     }
 
     @Override
-    public String toString() {
-        return "RestaurantDTO{" + "name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfo=" + cityInfo + '}';
+    public String toString()
+    {
+        return "RestaurantDTO{" + "id=" + id + ", name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfoDTO=" + cityInfoDTO + '}';
     }
 }

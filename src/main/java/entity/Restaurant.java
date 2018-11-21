@@ -6,8 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,10 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author mohammahomarhariri
- */
+
 @Entity
 public class Restaurant implements Serializable {
 
@@ -27,16 +22,15 @@ public class Restaurant implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name,foodtype,website,address;
-    private int phone;
+    private String name, foodtype, website, address, phone;
         
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CityInfo cityInfo;
 
     public Restaurant() {
     }
-
-    public Restaurant(String name, String foodtype, String website, String address, int phone, CityInfo cityInfo) {
+    
+    public Restaurant(String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
         this.name = name;
         this.foodtype = foodtype;
         this.website = website;
@@ -77,14 +71,16 @@ public class Restaurant implements Serializable {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone()
+    {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone)
+    {
         this.phone = phone;
     }
-
+    
     public CityInfo getCityInfo() {
         return cityInfo;
     }
