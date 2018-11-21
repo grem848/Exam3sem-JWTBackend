@@ -14,11 +14,6 @@ public class RestaurantDTO {
     public RestaurantDTO()
     {
     }
-
-    public RestaurantDTO(Restaurant res)
-    {
-        this.id = id;
-    }
     
     public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
         
