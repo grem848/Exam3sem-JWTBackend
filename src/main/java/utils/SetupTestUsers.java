@@ -1,6 +1,8 @@
 package utils;
 
 import DTO.RestaurantDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entity.CityInfo;
 import entity.Restaurant;
 import facade.RestaurantFacade;
@@ -16,7 +18,8 @@ public class SetupTestUsers
     {
 
         RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
-
+        Gson gson;
+        gson = new GsonBuilder().setPrettyPrinting().create();
         Collection<Restaurant> restaurants = new ArrayList();
         String test = "test";
 
@@ -24,9 +27,10 @@ public class SetupTestUsers
 //        Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
 
 //        rf.addRestaurant(res); 
-        List<RestaurantDTO> l = rf.getAllRestuarants();
-        System.out.println(l.toString());
+        List<RestaurantDTO> l = rf.getAllRestaurants();
+        String json = gson.toJson(l);
 
+        System.out.println(json);
 //            EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
 //    
 //    // IMPORTAAAAAAAAAANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -56,6 +60,5 @@ public class SetupTestUsers
 //    System.out.println("Testing user with OK password: " + user.verifyPassword("test"));
 //    System.out.println("Testing user with wrong password: " + user.verifyPassword("test1"));
 //    System.out.println("Created TEST Users");
-
     }
 }

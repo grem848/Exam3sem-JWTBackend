@@ -1,5 +1,6 @@
 package rest;
 
+import DTO.RestaurantDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -34,7 +35,6 @@ public class Resource
     private UriInfo context;
     Gson gson;
     
-    ArrayBlockingQueue<String> urls = new ArrayBlockingQueue(5);
     RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
 
     public Resource()
@@ -80,15 +80,6 @@ public class Resource
     @Context
     SecurityContext securityContext;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("user")
-    @RolesAllowed("user")
-    public String getFromUser()
-    {
-        String user = securityContext.getUserPrincipal().getName();
-        return "\"Hello from USER: " + user + "\"";  // FRONTEND
-    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -102,14 +93,15 @@ public class Resource
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("restaurant")
-    @RolesAllowed("admin") // rolesallowed doesnt allow admins
+    @Path("restaurants")
     public Response getAllRestaurants() throws MalformedURLException, IOException
     {
 
-        String json = gson.toJson(rf.getAllRestuarants());
+        List<RestaurantDTO> restaurantList = rf.getAllRestaurants();
+        String json = gson.toJson(restaurantList);
+        System.out.println(json);
 
-        if (rf.getAllRestuarants() != null)
+        if (restaurantList != null)
         {
             return Response
                     .status(200)
@@ -119,7 +111,7 @@ public class Resource
         } else
         {
             JsonObject error = new JsonObject();
-            error.addProperty("ErrorMessage", "Couldn't get all restaurants");
+            error.addProperty("ErrorMessage", json);
 
             return Response
                     .status(200)

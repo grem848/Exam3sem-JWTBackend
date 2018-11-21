@@ -69,17 +69,15 @@ public class RestaurantFacade
 //            em.close();
 //        }
 
-    public List<RestaurantDTO> getAllRestuarants()
+    public List<RestaurantDTO> getAllRestaurants()
     {
         EntityManager em = getEntityManager();
         List<RestaurantDTO> restaurants = null;
 
         try
         {
-            em.getTransaction().begin();
             restaurants = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p", RestaurantDTO.class).getResultList();
 //            Long id, String name, String foodtype, String website, String address, String phone, CityInfoDTO cityInfoDTO)
-            em.getTransaction().commit();
             
             return restaurants;
 
