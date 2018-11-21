@@ -1,6 +1,7 @@
 
 package DTO;
 
+import entity.CityInfo;
 import entity.Restaurant;
 
 
@@ -8,7 +9,6 @@ public class RestaurantDTO {
     
     private Long id;
     private String name, foodtype, website, address, phone;
-    
     private CityInfoDTO cityInfoDTO;
 
     public RestaurantDTO()
@@ -20,7 +20,7 @@ public class RestaurantDTO {
         this.id = id;
     }
     
-    public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfoDTO cityInfoDTO) {
+    public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
         
         this.id = id;
         this.name = name;
@@ -28,11 +28,7 @@ public class RestaurantDTO {
         this.website = website;
         this.address = address;
         this.phone = phone;
-        
-//        this.cityInfoDTO.setCity("Kongens Lyngby");
-//        this.cityInfoDTO.setZipCode(2800);
-//        this.cityInfoDTO.setCity(cityInfoDTO.getCity());
-//        this.cityInfoDTO.setZipCode(cityInfoDTO.getZipCode());
+        this.cityInfoDTO = (new CityInfoDTO(cityInfo.getZipCode(), cityInfo.getCity()));
         
     }
 

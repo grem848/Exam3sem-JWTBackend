@@ -52,6 +52,22 @@ public class RestaurantFacade
 
         return null;
     }
+//    
+//            EntityManager em = getEntityManager();
+//
+//        List<PersonDTO> persons = null;
+//
+//        try
+//        {
+//            em.getTransaction().begin();
+//            persons = em.createQuery("SELECT NEW DTO.PersonDTO(p) from Person p", PersonDTO.class).getResultList();
+//
+//            em.getTransaction().commit();
+//            return persons;
+//        } finally
+//        {
+//            em.close();
+//        }
 
     public List<RestaurantDTO> getAllRestuarants()
     {
@@ -60,24 +76,17 @@ public class RestaurantFacade
 
         try
         {
-
-            TypedQuery<RestaurantDTO> query = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p", RestaurantDTO.class);
+            em.getTransaction().begin();
+            restaurants = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p", RestaurantDTO.class).getResultList();
 //            Long id, String name, String foodtype, String website, String address, String phone, CityInfoDTO cityInfoDTO)
+            em.getTransaction().commit();
+            
+            return restaurants;
 
-            if (query.getResultList().isEmpty() == true)
-            {
-                restaurants = null;
-            } else
-            {
-                restaurants = query.getResultList();
-            }
-
-        } catch (Exception ex)
+        } finally 
         {
-            System.out.println(ex);
             em.close();
         }
-        return restaurants;
     }
 //        public Restaurant addRestaurant(Restaurant restaurant){
 //        EntityManager em = getEntityManager();
