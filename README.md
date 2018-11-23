@@ -13,3 +13,5 @@ A “Quick Start Project” for JAX-RS, React and React Native based application
 - Step 5: run SetupTestUser.java to create test users or run main to just create mySQL tables
 - Step 6: run project
 - Step 7: ??? profit
+
+https://travis-ci.org/grem848/Exam3sem-JWTBackend.svg?branch=fall_2018
