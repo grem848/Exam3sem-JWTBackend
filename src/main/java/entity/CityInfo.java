@@ -26,34 +26,66 @@ public class CityInfo implements Serializable {
     private int zipCode;
     private String city;
 
+    /**
+     *
+     */
     public CityInfo() {
     }
 
+    /**
+     *
+     * @param zipCode
+     * @param city
+     */
     public CityInfo(int zipCode, String city) {
         this.zipCode = zipCode;
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getZipCode() {
         return zipCode;
     }
 
+    /**
+     *
+     * @param zipCode
+     */
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
     
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }

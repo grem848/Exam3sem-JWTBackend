@@ -27,6 +27,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import threads.Call;
 
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 @Path("info")
 public class Resource
 {
@@ -37,6 +41,9 @@ public class Resource
     
     RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
 
+    /**
+     *
+     */
     public Resource()
     {
         gson = new GsonBuilder().setPrettyPrinting().create();

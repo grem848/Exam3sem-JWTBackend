@@ -24,7 +24,10 @@ import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
 
-
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class JWTAuthenticationFilter implements ContainerRequestFilter {
@@ -34,7 +37,12 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
  @Context
  private ResourceInfo resourceInfo;
 
- @Override   
+    /**
+     *
+     * @param request
+     * @throws IOException
+     */
+    @Override   
  public void filter(ContainerRequestContext request) throws IOException {
    if (isSecuredResource()) {
 

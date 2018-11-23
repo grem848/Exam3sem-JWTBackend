@@ -48,9 +48,20 @@ class Error {
         this.errorMessage = errorMessage;
     }
 }
+
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 @Provider
 public class GenericExceptionMapper implements ExceptionMapper<Throwable>  {
     static private final Gson gson = new Gson();
+
+    /**
+     *
+     * @param ex
+     * @return
+     */
     @Override
     public Response toResponse(Throwable  ex) {
        
@@ -81,6 +92,13 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable>  {
     }
     
     //Small hack, to provide json-error response in the filter
+
+    /**
+     *
+     * @param msg
+     * @param status
+     * @return
+     */
     public static Response makeErrRes(String msg,int status){
         Error error = new Error(
                 status,

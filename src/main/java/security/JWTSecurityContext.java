@@ -3,27 +3,58 @@ package security;
 import java.security.Principal;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.SecurityContext;
+
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 public class JWTSecurityContext implements SecurityContext {
    UserPrincipal user;
    ContainerRequestContext request;
 
-   public JWTSecurityContext(UserPrincipal user,ContainerRequestContext request) {
+    /**
+     *
+     * @param user
+     * @param request
+     */
+    public JWTSecurityContext(UserPrincipal user,ContainerRequestContext request) {
        this.user = user;
        this.request = request;
    }
-   @Override
+
+    /**
+     *
+     * @param role
+     * @return
+     */
+    @Override
    public boolean isUserInRole(String role) {
        return user.isUserInRole(role);
    }
-   @Override
+
+    /**
+     *
+     * @return
+     */
+    @Override
    public boolean isSecure() {
        return request.getUriInfo().getBaseUri().getScheme().equals("https");
    }
-   @Override
+
+    /**
+     *
+     * @return
+     */
+    @Override
    public Principal getUserPrincipal() {
        return user;
    }
-   @Override
+
+    /**
+     *
+     * @return
+     */
+    @Override
    public String getAuthenticationScheme() {
        return "JWT"; //Only for INFO
    }

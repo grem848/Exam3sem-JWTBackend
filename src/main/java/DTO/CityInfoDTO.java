@@ -15,34 +15,66 @@ public class CityInfoDTO {
     private int zipCode;
     private String city;
 
+    /**
+     *
+     */
     public CityInfoDTO()
     {
     }
     
+    /**
+     *
+     * @param zipCode
+     * @param city
+     */
     public CityInfoDTO(int zipCode, String city) {
         this.city = city + ", " + zipCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getZipCode() {
         return zipCode;
     }
 
+    /**
+     *
+     * @param zipCode
+     */
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }

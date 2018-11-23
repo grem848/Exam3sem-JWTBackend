@@ -36,25 +36,48 @@ public class Role implements Serializable {
     @ManyToMany(mappedBy = "roleList")
     private List<User> userList;
 
+    /**
+     *
+     */
     public Role() {
     }
 
+    /**
+     *
+     * @param roleName
+     */
     public Role(String roleName) {
         this.roleName = roleName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRoleName() {
         return roleName;
     }
 
+    /**
+     *
+     * @param roleName
+     */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<User> getUserList() {
         return userList;
     }
 
+    /**
+     *
+     * @param userList
+     */
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }

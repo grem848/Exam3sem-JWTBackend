@@ -26,12 +26,25 @@ import javax.ws.rs.core.Response;
 import exceptions.AuthenticationException;
 import exceptions.GenericExceptionMapper;
 
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 @Path("login")
 public class LoginEndpoint {
 
-  public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
+    /**
+     *
+     */
+    public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
 
-  @POST
+    /**
+     *
+     * @param jsonString
+     * @return
+     * @throws AuthenticationException
+     */
+    @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(String jsonString) throws AuthenticationException {

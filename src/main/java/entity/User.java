@@ -15,6 +15,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable
@@ -41,6 +45,10 @@ public class User implements Serializable
     @ManyToMany
     private List<Role> roleList = new ArrayList();
 
+    /**
+     *
+     * @return
+     */
     public List<String> getRolesAsStrings()
     {
         if (roleList.isEmpty())
@@ -55,11 +63,20 @@ public class User implements Serializable
         return rolesAsStrings;
     }
 
+    /**
+     *
+     */
     public User()
     {
     }
 
     //TODO Change when password is hashed
+
+    /**
+     *
+     * @param pw
+     * @return
+     */
     public boolean verifyPassword(String pw)
     {
         //return (pw.equals(userPass));        
@@ -75,6 +92,11 @@ public class User implements Serializable
         }
     }
 
+    /**
+     *
+     * @param userName
+     * @param userPass
+     */
     public User(String userName, String userPass)
     {
         this.userName = userName;
@@ -84,36 +106,64 @@ public class User implements Serializable
         // previously been hashed
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserName()
     {
         return userName;
     }
 
+    /**
+     *
+     * @param userName
+     */
     public void setUserName(String userName)
     {
         this.userName = userName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserPass()
     {
         return this.userPass;
     }
 
+    /**
+     *
+     * @param userPass
+     */
     public void setUserPass(String userPass)
     {
         this.userPass = userPass;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Role> getRoleList()
     {
         return roleList;
     }
 
+    /**
+     *
+     * @param roleList
+     */
     public void setRoleList(List<Role> roleList)
     {
         this.roleList = roleList;
     }
 
+    /**
+     *
+     * @param userRole
+     */
     public void addRole(Role userRole)
     {
         roleList.add(userRole);

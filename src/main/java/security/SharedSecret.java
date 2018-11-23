@@ -6,8 +6,19 @@ import java.security.SecureRandom;
 /* This generates a secure random per execution of the server
  * A server restart, will generate a new key, making all existing tokens invalid
  * For production (and if a load-balancer is used) come up with a persistent key strategy */
+
+/**
+ *
+ * @author Andreas Heick Laptop
+ */
+
 public class SharedSecret {
     private static byte[] secret;
+
+    /**
+     *
+     * @return
+     */
     public static byte[] getSharedKey() {
         System.out.println("******************* IMPORTANT ******************'");
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
