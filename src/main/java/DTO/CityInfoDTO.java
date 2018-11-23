@@ -5,9 +5,6 @@
  */
 package DTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author mohammahomarhariri
@@ -17,8 +14,6 @@ public class CityInfoDTO {
     private Long id;
     private int zipCode;
     private String city;
-
-    private List<RestaurantDTO> list = new ArrayList<>();
 
     public CityInfoDTO()
     {
@@ -55,7 +50,7 @@ public class CityInfoDTO {
     @Override
     public String toString()
     {
-        return "CityInfoDTO{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + ", list=" + list + '}';
+        return "CityInfoDTO{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + '}';
     }
-    
+
 }

@@ -6,14 +6,10 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,9 +25,6 @@ public class CityInfo implements Serializable {
 
     private int zipCode;
     private String city;
-
-    @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.PERSIST)
-    private List<Restaurant> restaurants = new ArrayList<>();
 
     public CityInfo() {
     }
@@ -55,18 +48,6 @@ public class CityInfo implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-    
-    public void addRestuarant(Restaurant restaurant){
-        this.restaurants.add(restaurant);
     }
     
     public Long getId() {
