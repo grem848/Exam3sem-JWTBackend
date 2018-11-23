@@ -81,6 +81,10 @@ public class Resource
     SecurityContext securityContext;
 
 
+    /**
+     * 
+     * @return a string with the User object
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("admin")
@@ -91,6 +95,13 @@ public class Resource
         return "\"Hello from ADMIN" + user + "\""; // FRONTEND
     }
 
+    /**
+     * Used when fetch method is GET, with this Path. 
+     * 
+     * @return if no errors occoured in facade.RestaurantFacade.java return restaurants. else return error message
+     * @throws MalformedURLException ?
+     * @throws IOException ? 
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("restaurants")
