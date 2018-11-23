@@ -14,4 +14,4 @@ A “Quick Start Project” for JAX-RS, React and React Native based application
 - Step 6: run project
 - Step 7: ??? profit
 
-https://travis-ci.org/grem848/Exam3sem-JWTBackend.svg?branch=fall_2018
+[![Build Status](https://travis-ci.org/grem848/Exam3sem-JWTBackend.svg?branch=fall_2018)](https://travis-ci.org/grem848/Exam3sem-JWTBackend)
