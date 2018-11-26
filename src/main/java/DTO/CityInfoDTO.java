@@ -11,9 +11,9 @@ package DTO;
  */
 public class CityInfoDTO {
     
-    private Long id;
     private int zipCode;
     private String city;
+    private String cityZip;
 
     /**
      *
@@ -28,23 +28,9 @@ public class CityInfoDTO {
      * @param city
      */
     public CityInfoDTO(int zipCode, String city) {
-        this.city = city + ", " + zipCode;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.cityZip = city + ", " + zipCode;
     }
 
     /**
@@ -79,10 +65,20 @@ public class CityInfoDTO {
         this.city = city;
     }
 
+    public String getCityZip()
+    {
+        return cityZip;
+    }
+
+    public void setCityZip(String cityZip)
+    {
+        this.cityZip = cityZip;
+    }
+
     @Override
     public String toString()
     {
-        return "CityInfoDTO{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + '}';
+        return "CityInfoDTO{" + "zipCode=" + zipCode + ", city=" + city + ", cityZip=" + cityZip + '}';
     }
 
 }
