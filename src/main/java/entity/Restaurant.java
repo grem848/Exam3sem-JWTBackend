@@ -51,10 +51,10 @@ public class Restaurant implements Serializable {
 
     public Restaurant(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
         this.id = id;
-        this.name = name;
-        this.foodtype = foodtype;
+        this.restName = name;
+        this.foodType = foodtype;
         this.website = website;
-        this.address = address;
+        this.street = address;
         this.phone = phone;
         this.cityInfo = cityInfo;
     }
