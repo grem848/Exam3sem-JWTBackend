@@ -12,9 +12,8 @@ public class CityInfo implements Serializable {
 
 
     @Id
-    private int zipCode;
+    private String zipCode;
     private String city;
-    private String cityZip;
 
     /**
      *
@@ -27,17 +26,16 @@ public class CityInfo implements Serializable {
      * @param zipCode
      * @param city
      */
-    public CityInfo(int zipCode, String city) {
+    public CityInfo(String zipCode, String city) {
         this.zipCode = zipCode;
         this.city = city;
-        this.cityZip = city + ", " + zipCode;
     }
 
     /**
      *
      * @return
      */
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
@@ -45,7 +43,7 @@ public class CityInfo implements Serializable {
      *
      * @param zipCode
      */
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -64,24 +62,5 @@ public class CityInfo implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-
-    /**
-     *
-     * @return
-     */
-    public String getCityZip()
-    {
-        return cityZip;
-    }
-
-    /**
-     *
-     * @param cityZip
-     */
-    public void setCityZip(String cityZip)
-    {
-        this.cityZip = cityZip;
-    }
-    
     
 }

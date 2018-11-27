@@ -28,7 +28,7 @@ public class SetupTestUsers
         Collection<Restaurant> restaurants = new ArrayList();
         String test = "test";
 
-        CityInfo cityInfo = new CityInfo(3000, "Helsingør");
+        CityInfo cityInfo = new CityInfo("3000", "Helsingør");
 //        Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
 
 //        rf.addRestaurant(res); 
