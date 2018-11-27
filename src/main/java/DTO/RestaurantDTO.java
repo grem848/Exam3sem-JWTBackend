@@ -11,7 +11,7 @@ import entity.Restaurant;
 public class RestaurantDTO {
     
     private Long id;
-    private String name, foodtype, website, address, phone;
+    private String restName, foodType, website, street, phone, pictureUrl;
     private CityInfoDTO cityInfoDTO;
 
     /**
@@ -30,16 +30,18 @@ public class RestaurantDTO {
      * @param address
      * @param phone
      * @param cityInfo
+     * @param pictureurl 
      */
-    public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
+    public RestaurantDTO(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo, String pictureurl) {
         
         this.id = id;
-        this.name = name;
-        this.foodtype = foodtype;
+        this.restName = name;
+        this.foodType = foodtype;
         this.website = website;
-        this.address = address;
+        this.street = address;
         this.phone = phone;
         this.cityInfoDTO = (new CityInfoDTO(cityInfo.getZipCode(), cityInfo.getCity()));
+        this.pictureUrl = pictureurl;
         
     }
 
@@ -48,7 +50,7 @@ public class RestaurantDTO {
      * @return
      */
     public String getName() {
-        return name;
+        return restName;
     }
 
     /**
@@ -56,7 +58,7 @@ public class RestaurantDTO {
      * @param name
      */
     public void setName(String name) {
-        this.name = name;
+        this.restName = name;
     }
 
     /**
@@ -64,7 +66,7 @@ public class RestaurantDTO {
      * @return
      */
     public String getFoodtype() {
-        return foodtype;
+        return foodType;
     }
 
     /**
@@ -72,7 +74,7 @@ public class RestaurantDTO {
      * @param foodtype
      */
     public void setFoodtype(String foodtype) {
-        this.foodtype = foodtype;
+        this.foodType = foodtype;
     }
 
     /**
@@ -96,7 +98,7 @@ public class RestaurantDTO {
      * @return
      */
     public String getAddress() {
-        return address;
+        return street;
     }
 
     /**
@@ -104,7 +106,7 @@ public class RestaurantDTO {
      * @param address
      */
     public void setAddress(String address) {
-        this.address = address;
+        this.street = address;
     }
 
     /**
@@ -161,9 +163,19 @@ public class RestaurantDTO {
         this.cityInfoDTO = cityInfoDTO;
     }
 
+    public String getPictureurl() {
+        return pictureUrl;
+    }
+
+    public void setPictureurl(String pictureurl) {
+        this.pictureUrl = pictureurl;
+    }
+    
+    
+    
     @Override
     public String toString()
     {
-        return "RestaurantDTO{" + "id=" + id + ", name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfoDTO=" + cityInfoDTO + '}';
+        return "RestaurantDTO{" + "id=" + id + ", name=" + restName + ", foodtype=" + foodType + ", website=" + website + ", address=" + street + ", phone=" + phone + ", cityInfoDTO=" + cityInfoDTO + '}';
     }
 }
