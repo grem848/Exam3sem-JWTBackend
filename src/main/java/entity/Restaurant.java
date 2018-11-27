@@ -25,7 +25,7 @@ public class Restaurant implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name, foodtype, website, address, phone;
+    private String restName, foodType, website, street, phone, pictureUrl;
         
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CityInfo cityInfo;
@@ -38,20 +38,22 @@ public class Restaurant implements Serializable {
     
     /**
      *
-     * @param name
-     * @param foodtype
+     * @param restName
+     * @param foodType
      * @param website
-     * @param address
+     * @param street
      * @param phone
      * @param cityInfo
+     * @param pictureUrl 
      */
-    public Restaurant(String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
-        this.name = name;
-        this.foodtype = foodtype;
+    public Restaurant(String restName, String foodType, String website, String street, String phone, CityInfo cityInfo, String pictureUrl) {
+        this.restName = restName;
+        this.foodType = foodType;
         this.website = website;
-        this.address = address;
+        this.street = street;
         this.phone = phone;
         this.cityInfo = cityInfo;
+        this.pictureUrl = pictureUrl;
     }
 
     /**
@@ -59,7 +61,7 @@ public class Restaurant implements Serializable {
      * @return
      */
     public String getName() {
-        return name;
+        return restName;
     }
 
     /**
@@ -67,7 +69,7 @@ public class Restaurant implements Serializable {
      * @param name
      */
     public void setName(String name) {
-        this.name = name;
+        this.restName = name;
     }
 
     /**
@@ -75,7 +77,7 @@ public class Restaurant implements Serializable {
      * @return
      */
     public String getFoodtype() {
-        return foodtype;
+        return foodType;
     }
 
     /**
@@ -83,7 +85,7 @@ public class Restaurant implements Serializable {
      * @param foodtype
      */
     public void setFoodtype(String foodtype) {
-        this.foodtype = foodtype;
+        this.foodType = foodtype;
     }
 
     /**
@@ -107,7 +109,7 @@ public class Restaurant implements Serializable {
      * @return
      */
     public String getAddress() {
-        return address;
+        return street;
     }
 
     /**
@@ -115,7 +117,7 @@ public class Restaurant implements Serializable {
      * @param address
      */
     public void setAddress(String address) {
-        this.address = address;
+        this.street = address;
     }
 
     /**
@@ -167,4 +169,14 @@ public class Restaurant implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getPictureurl() {
+        return pictureUrl;
+    }
+
+    public void setPictureurl(String pictureurl) {
+        this.pictureUrl = pictureurl;
+    }
+    
+    
 }

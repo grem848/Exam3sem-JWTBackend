@@ -78,7 +78,7 @@ public class RestaurantFacade
 
         try
         {
-            restaurants = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p", RestaurantDTO.class).getResultList();
+            restaurants = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.restName, p.foodType, p.website, p.street, p.phone, p.cityInfo, p.pictureUrl) from Restaurant p", RestaurantDTO.class).getResultList();
             
             return restaurants;
 
