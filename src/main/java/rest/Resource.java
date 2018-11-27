@@ -138,12 +138,10 @@ public class Resource
     @Path("restaurants")
     public Response editRestaurants(String json) throws MalformedURLException, IOException
     {
-
-        Restaurant restaurant = rf.getRestaurantById(gson.fromJson(json,Restaurant.class).getId());
         
-        if(restaurant != null){
+        if(rf.getRestaurantDTOById(gson.fromJson(json,Restaurant.class).getId()) != null){
                     
-            RestaurantDTO editedRestaurant = rf.editRestaurant(restaurant);
+            RestaurantDTO editedRestaurant = rf.editRestaurant(gson.fromJson(json,Restaurant.class));
                     return Response
                     .status(200)
                     .entity(gson.toJson(editedRestaurant))

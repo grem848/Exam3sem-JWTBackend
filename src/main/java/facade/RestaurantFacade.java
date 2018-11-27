@@ -100,7 +100,6 @@ public class RestaurantFacade
         } else {
             return null;
         }
-
     }
     
     public RestaurantDTO getRestaurantDTOById(Long id){
@@ -108,19 +107,6 @@ public class RestaurantFacade
         RestaurantDTO restaurant = null;
             try{
             restaurant = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p WHERE p.id = :id", RestaurantDTO.class)
-                    .setParameter("id",id)
-                    .getSingleResult();
-           }catch(NoResultException ex){
-                System.out.println("No Result " + ex);
-           }   
-        return restaurant;
-    }
-    
-    public Restaurant getRestaurantById(Long id){
-        EntityManager em = getEntityManager();
-        Restaurant restaurant = null;
-            try{
-            restaurant = em.createQuery("SELECT p from Restaurant p WHERE p.id = :id", Restaurant.class)
                     .setParameter("id",id)
                     .getSingleResult();
            }catch(NoResultException ex){
