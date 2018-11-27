@@ -11,10 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 public class SetupTestUsers
 {
 

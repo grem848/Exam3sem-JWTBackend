@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 public class UserPrincipal implements Principal {
 
   private String username;

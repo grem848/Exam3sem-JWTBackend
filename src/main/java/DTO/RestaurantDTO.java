@@ -2,12 +2,8 @@
 package DTO;
 
 import entity.CityInfo;
-import entity.Restaurant;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 public class RestaurantDTO {
     
     private Long id;
@@ -163,10 +159,18 @@ public class RestaurantDTO {
         this.cityInfo = cityInfo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPictureurl() {
         return pictureUrl;
     }
 
+    /**
+     *
+     * @param pictureurl
+     */
     public void setPictureurl(String pictureurl) {
         this.pictureUrl = pictureurl;
     }

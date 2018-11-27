@@ -15,10 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable

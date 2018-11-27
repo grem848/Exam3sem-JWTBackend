@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
 import java.io.Serializable;
@@ -13,10 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 @Entity
 public class Restaurant implements Serializable {
 
@@ -170,10 +163,18 @@ public class Restaurant implements Serializable {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPictureurl() {
         return pictureUrl;
     }
 
+    /**
+     *
+     * @param pictureurl
+     */
     public void setPictureurl(String pictureurl) {
         this.pictureUrl = pictureurl;
     }

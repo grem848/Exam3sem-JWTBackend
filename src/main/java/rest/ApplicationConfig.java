@@ -4,10 +4,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 

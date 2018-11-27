@@ -1,9 +1,6 @@
 package exceptions;
 
-/**
- *
- * @author lam@cphbusiness.dk
- */
+
 public class NotFoundException extends Exception{
 
     /**
