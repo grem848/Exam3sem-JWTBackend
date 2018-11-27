@@ -49,6 +49,18 @@ public class Restaurant implements Serializable {
         this.pictureUrl = pictureUrl;
     }
 
+    public Restaurant(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
+        this.id = id;
+        this.name = name;
+        this.foodtype = foodtype;
+        this.website = website;
+        this.address = address;
+        this.phone = phone;
+        this.cityInfo = cityInfo;
+    }
+    
+    
+
     /**
      *
      * @return

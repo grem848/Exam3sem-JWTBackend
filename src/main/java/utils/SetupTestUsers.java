@@ -29,12 +29,12 @@ public class SetupTestUsers
         String test = "test";
 
         CityInfo cityInfo = new CityInfo(3000, "Helsingør");
-//        Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
+        Restaurant res = new Restaurant(10l ,"Rasmus", test, test, test, "1000", cityInfo);
 
 //        rf.addRestaurant(res); 
-        List<RestaurantDTO> l = rf.getAllRestaurants();
+        RestaurantDTO l = rf.getRestaurantDTOById(10l);
+        //List<RestaurantDTO> l = rf.getAllRestaurants();
         String json = gson.toJson(l);
-
         System.out.println(json);
 //            EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
 //    
