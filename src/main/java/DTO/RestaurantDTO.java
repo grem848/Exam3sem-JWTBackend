@@ -12,7 +12,7 @@ public class RestaurantDTO {
     
     private Long id;
     private String name, foodtype, website, address, phone;
-    private CityInfoDTO cityInfoDTO;
+    private CityInfo cityInfo;
 
     /**
      *
@@ -39,7 +39,7 @@ public class RestaurantDTO {
         this.website = website;
         this.address = address;
         this.phone = phone;
-        this.cityInfoDTO = (new CityInfoDTO(cityInfo.getZipCode(), cityInfo.getCity()));
+        this.cityInfo = cityInfo;
         
     }
 
@@ -147,23 +147,23 @@ public class RestaurantDTO {
      *
      * @return
      */
-    public CityInfoDTO getCityInfoDTO()
+    public CityInfo getCityInfo()
     {
-        return cityInfoDTO;
+        return cityInfo;
     }
 
     /**
      *
-     * @param cityInfoDTO
+     * @param cityInfo
      */
-    public void setCityInfoDTO(CityInfoDTO cityInfoDTO)
+    public void setCityInfoDTO(CityInfo cityInfo)
     {
-        this.cityInfoDTO = cityInfoDTO;
+        this.cityInfo = cityInfo;
     }
 
     @Override
     public String toString()
     {
-        return "RestaurantDTO{" + "id=" + id + ", name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfoDTO=" + cityInfoDTO + '}';
+        return "RestaurantDTO{" + "id=" + id + ", name=" + name + ", foodtype=" + foodtype + ", website=" + website + ", address=" + address + ", phone=" + phone + ", cityInfo=" + cityInfo + '}';
     }
 }
