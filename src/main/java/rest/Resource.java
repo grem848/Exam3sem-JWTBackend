@@ -109,7 +109,7 @@ public class Resource
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("restaurants")
+    @Path("durumborestaurants")
     public Response getDurumboRestaurants() throws MalformedURLException, IOException
     {
 
@@ -169,7 +169,7 @@ public class Resource
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("all")
+    @Path("allrestaurants")
     public Response getAllRestaurants()
     {
         List<RestaurantDTO> restaurants = rf.getAllRestaurants();
