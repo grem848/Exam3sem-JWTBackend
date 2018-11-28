@@ -1,13 +1,20 @@
 package rest;
 
+import DTO.CityInfoDTO;
 import DTO.RestaurantDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import static com.google.protobuf.DescriptorProtos.MethodOptions.parser;
+import entity.CityInfo;
 import entity.Restaurant;
 import facade.RestaurantFacade;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.Persistence;
@@ -22,7 +29,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-
 @Path("info")
 public class Resource
 {
@@ -30,8 +36,9 @@ public class Resource
     @Context
     private UriInfo context;
     Gson gson;
-    
+
     RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
+    private JsonParser jsonParser = new JsonParser();
 
     /**
      *
@@ -75,13 +82,11 @@ public class Resource
 //        response = substring;
 //        return response += "]";
 //    }
-
     @Context
     SecurityContext securityContext;
 
-
     /**
-     * 
+     *
      * @return a string with the User object
      */
     @GET
@@ -95,16 +100,17 @@ public class Resource
     }
 
     /**
-     * Used when fetch method is GET, with this Path. 
-     * 
-     * @return if no errors occoured in facade.RestaurantFacade.java return restaurants. else return error message
+     * Used when fetch method is GET, with this Path.
+     *
+     * @return if no errors occoured in facade.RestaurantFacade.java return
+     * restaurants. else return error message
      * @throws MalformedURLException ?
-     * @throws IOException ? 
+     * @throws IOException ?
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("restaurants")
-    public Response getAllRestaurants() throws MalformedURLException, IOException
+    public Response getDurumboRestaurants() throws MalformedURLException, IOException
     {
 
         List<RestaurantDTO> restaurantList = rf.getAllRestaurants();
@@ -124,25 +130,26 @@ public class Resource
             error.addProperty("ErrorMessage", json);
 
             return Response
-                    .status(200)
+                    .status(500)
                     .entity(error)
                     .type(MediaType.APPLICATION_JSON)
                     .build();
 
         }
     }
-    
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("restaurants")
     public Response editRestaurants(String json) throws MalformedURLException, IOException
     {
-        
-        if(rf.getRestaurantDTOById(gson.fromJson(json,Restaurant.class).getId()) != null){
-                    
-            RestaurantDTO editedRestaurant = rf.editRestaurant(gson.fromJson(json,Restaurant.class));
-                    return Response
+
+        if (rf.getRestaurantDTOById(gson.fromJson(json, Restaurant.class).getId()) != null)
+        {
+
+            RestaurantDTO editedRestaurant = rf.editRestaurant(gson.fromJson(json, Restaurant.class));
+            return Response
                     .status(200)
                     .entity(gson.toJson(editedRestaurant))
                     .type(MediaType.APPLICATION_JSON)
@@ -157,6 +164,80 @@ public class Resource
                     .entity(error)
                     .type(MediaType.APPLICATION_JSON)
                     .build();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
+    public Response getAllRestaurants()
+    {
+        List<RestaurantDTO> restaurants = rf.getAllRestaurants();
+
+        String remote = rf.getOtherRestaurants();
+        System.out.println(remote); // remove when UTF-8 works
+
+        if (remote.contains("->Red<-"))
+        {
+            remote = null;
+        }
+
+        if (remote != null)
+        {
+            long nextID = (restaurants.get(restaurants.size() - 1).id + 1);
+
+            System.out.println(remote);
+
+            JsonArray jo = jsonParser.parse(remote).getAsJsonArray();
+            List<RestaurantDTO> list = new ArrayList<>();
+            for (JsonElement jsonElement : jo)
+            {
+                RestaurantDTO dto = new RestaurantDTO();
+                dto.phone = jsonElement.getAsJsonObject().get("phone").getAsString();
+                dto.restName = jsonElement.getAsJsonObject().get("restName").getAsString();
+                dto.foodType = jsonElement.getAsJsonObject().get("foodType").getAsString();
+                dto.street = jsonElement.getAsJsonObject().get("street").getAsString();
+                if (jsonElement.getAsJsonObject().has("website"))
+                {
+                    dto.website = jsonElement.getAsJsonObject().get("website").getAsString();
+                }
+                JsonElement newjo = jsonElement.getAsJsonObject().get("cityInfo");
+                String zip = newjo.getAsJsonObject().get("zip").getAsString();
+                String city = newjo.getAsJsonObject().get("city").getAsString();
+                CityInfo cityInfo = new CityInfo(zip, city);
+                CityInfoDTO cityInfoDTO = new CityInfoDTO(cityInfo);
+                dto.cityInfo = cityInfoDTO;
+                dto.id = nextID;
+                nextID++;
+                list.add(dto);
+            }
+            restaurants.addAll(list);
+            
+            return Response
+                    .status(200)
+                    .entity(gson.toJson(restaurants))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+
+        } else if (restaurants != null)
+        {
+            return Response
+                    .status(200)
+                    .entity(gson.toJson(restaurants))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+        else
+        {
+            JsonObject error = new JsonObject();
+            error.addProperty("ErrorMessage", restaurants + ", " + remote);
+
+            return Response
+                    .status(500)
+                    .entity(error)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+
         }
     }
 }
