@@ -4,15 +4,12 @@ package DTO;
 import entity.CityInfo;
 import entity.Restaurant;
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 public class RestaurantDTO {
     
-    private Long id;
-    private String restName, foodType, website, street, phone, pictureUrl;
-    private CityInfoDTO cityInfo;
+    public Long id;
+    public String restName, foodType, website, street, phone, pictureUrl;
+    public CityInfoDTO cityInfo;
 
     /**
      *
@@ -40,7 +37,7 @@ public class RestaurantDTO {
         this.website = website;
         this.street = street;
         this.phone = phone;
-        this.cityInfo = (new CityInfoDTO(cityInfo.getZipCode(), cityInfo.getCity()));
+        this.cityInfo = (new CityInfoDTO(cityInfo));
         this.pictureUrl = pictureUrl;
         
     }
@@ -53,7 +50,7 @@ public class RestaurantDTO {
         this.website = restaurant.getWebsite();
         this.street = restaurant.getAddress();
         this.phone = restaurant.getPhone();
-        this.cityInfo = (new CityInfoDTO(restaurant.getCityInfo().getZipCode(), restaurant.getCityInfo().getCity()));
+        this.cityInfo = new CityInfoDTO(restaurant.getCityInfo());
         this.pictureUrl = pictureUrl;
     }
 

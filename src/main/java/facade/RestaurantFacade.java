@@ -5,17 +5,21 @@ import entity.CityInfo;
 import entity.Restaurant;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import static javax.ws.rs.client.Entity.json;
 
+/*
+* @author mohammahomarhariri
+*/
 public class RestaurantFacade {
 
-    /**
-     *
-     * @author mohammahomarhariri
-     */
 
     private EntityManagerFactory emf;
 
@@ -49,16 +53,16 @@ public class RestaurantFacade {
         list.add(restaurant);
 
         CityInfo ci = em.find(CityInfo.class, restaurant.getCityInfo().getZipCode());
-        
+
         if (ci != null) {
             //ci.setRestaurants(list);
             ci.addRestaurant(restaurant);
             try {
-                
+
                 em.getTransaction().begin();
                 em.merge(ci);
                 em.getTransaction().commit();
-                                
+
             } catch (Exception ex) {
                 System.out.println(ex);
                 em.close();
@@ -69,7 +73,7 @@ public class RestaurantFacade {
                 em.getTransaction().begin();
                 em.persist(restaurant);
                 em.getTransaction().commit();
-                
+
             } catch (Exception ex) {
                 System.out.println(ex);
                 em.close();
@@ -86,6 +90,7 @@ public class RestaurantFacade {
      * @return returns all restaurants from DataBase
      */
     public List<RestaurantDTO> getAllRestaurants() {
+
         EntityManager em = getEntityManager();
         List<RestaurantDTO> restaurants = null;
 
@@ -99,30 +104,52 @@ public class RestaurantFacade {
         }
     }
 
+    public String getOtherRestaurants() {
+
+        String result = "Error";
+        try {
+            URL url = new URL("https://oloye.dk/api/info/getlist");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+//            con.setRequestProperty("User-Agent", "server");
+
+            Scanner scan = new Scanner(con.getInputStream());
+            String jsonStr = "";
+
+            while (scan.hasNext()) {
+                jsonStr += scan.nextLine();
+            }
+            scan.close();
+            Charset.forName("UTF-8").encode(jsonStr);
+            return jsonStr;
+
+        } catch (Exception e) {
+            result = "->Red<-" + e;
+        }
+        return "\"" + result + "\"";
+
+    }
+
     public RestaurantDTO editRestaurant(Restaurant restaurant) {
         EntityManager em = getEntityManager();
+        
+        try {
 
-        Restaurant res = em.find(Restaurant.class, restaurant.getId());
-        if (res != null) {
-            try {
+            em.getTransaction().begin();
+            em.merge(restaurant);
+            em.getTransaction().commit();
 
-                em.getTransaction().begin();
-                em.merge(restaurant);
-                em.getTransaction().commit();
-
-            } catch (Exception ex) {
-                System.out.println(ex);
-                em.close();
-            }
-
-            return getRestaurantDTOByNameAndPhone(restaurant.getName(),restaurant.getPhone());
-            
-        } else {
-            return null;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            em.close();
         }
+
+        return getRestaurantDTOById(restaurant.getId());
     }
 
     public RestaurantDTO getRestaurantDTOByNameAndPhone(String name, String phone) {
+        
         EntityManager em = getEntityManager();
         RestaurantDTO restaurant = null;
         try {
@@ -130,12 +157,13 @@ public class RestaurantFacade {
                     .setParameter("name", name)
                     .setParameter("phone", phone)
                     .getSingleResult();
+            
         } catch (NoResultException ex) {
             System.out.println("No Result " + ex);
         }
         return restaurant;
     }
-    
+
     public RestaurantDTO getRestaurantDTOById(Long id) {
         EntityManager em = getEntityManager();
         RestaurantDTO restaurant = null;
