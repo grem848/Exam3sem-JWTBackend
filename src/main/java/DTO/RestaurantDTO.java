@@ -2,6 +2,7 @@
 package DTO;
 
 import entity.CityInfo;
+import entity.Restaurant;
 
 /**
  *
@@ -42,6 +43,18 @@ public class RestaurantDTO {
         this.cityInfo = (new CityInfoDTO(cityInfo.getZipCode(), cityInfo.getCity()));
         this.pictureUrl = pictureUrl;
         
+    }
+    
+    public RestaurantDTO(Restaurant restaurant) {
+        
+        this.id = restaurant.getId();
+        this.restName = restaurant.getName();
+        this.foodType = restaurant.getFoodtype();
+        this.website = restaurant.getWebsite();
+        this.street = restaurant.getAddress();
+        this.phone = restaurant.getPhone();
+        this.cityInfo = (new CityInfoDTO(restaurant.getCityInfo().getZipCode(), restaurant.getCityInfo().getCity()));
+        this.pictureUrl = pictureUrl;
     }
 
     /**

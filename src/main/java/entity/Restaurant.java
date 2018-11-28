@@ -20,7 +20,7 @@ public class Restaurant implements Serializable {
 
     private String restName, foodType, website, street, phone, pictureUrl;
         
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private CityInfo cityInfo;
 
     /**
@@ -190,6 +190,17 @@ public class Restaurant implements Serializable {
     public void setPictureurl(String pictureurl) {
         this.pictureUrl = pictureurl;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "\n " + id +
+                "\n"+ restName + 
+                "\n" + foodType +
+                "\n" + phone + 
+                "\n" + street + 
+                "\n" + website + 
+                "\n" + cityInfo.getCity() +
+                "\n" + cityInfo.getZipCode();
+    }
     
 }

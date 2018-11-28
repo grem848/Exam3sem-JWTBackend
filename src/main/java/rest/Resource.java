@@ -17,6 +17,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -132,25 +133,63 @@ public class Resource
         }
     }
     
-    @POST
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("restaurants")
-    public Response editRestaurants(String json) throws MalformedURLException, IOException
+    @Path("edit")
+    public Response editRestaurants(String json)
     {
-        
-        if(rf.getRestaurantDTOById(gson.fromJson(json,Restaurant.class).getId()) != null){
-                    
-            RestaurantDTO editedRestaurant = rf.editRestaurant(gson.fromJson(json,Restaurant.class));
+        Restaurant r = gson.fromJson(json,Restaurant.class);
+        System.out.println(r.toString());
+        if(rf.getRestaurantDTOById(r.getId()) != null){
+            
+                    System.out.println("not null");
+
+            RestaurantDTO editedRestaurant = rf.editRestaurant(r);
+            
                     return Response
                     .status(200)
                     .entity(gson.toJson(editedRestaurant))
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         } else
-        {
+        { 
+                    System.out.println("Null");
+
             JsonObject error = new JsonObject();
             error.addProperty("ErrorMessage", "Error has occured");
+
+            return Response
+                    .status(500)
+                    .entity(error)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+    }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("create")
+    public Response addRestaurants(String json)
+    {
+        
+        Restaurant r = gson.fromJson(json,Restaurant.class);
+        System.out.println(r.toString());
+        boolean exist = rf.getRestaurantDTOByNameAndPhone(r.getName(),r.getPhone()) != null; 
+        
+        if(!exist){
+            RestaurantDTO addedRestaurant = rf.addRestaurant(r);
+            
+                    return Response
+                    .status(200)
+                    .entity(gson.toJson(addedRestaurant))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        } else
+        { 
+            JsonObject error = new JsonObject();
+            error.addProperty("ErrorMessage", "Restaurant already exist");
 
             return Response
                     .status(500)

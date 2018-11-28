@@ -21,7 +21,7 @@ public class SetupTestUsers
      */
     public static void main(String[] args)
     {
-
+        
         RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pu"));
         Gson gson;
         gson = new GsonBuilder().setPrettyPrinting().create();
@@ -29,12 +29,11 @@ public class SetupTestUsers
         String test = "test";
 
 
-        CityInfo cityInfo = new CityInfo("3000", "Helsingør");
-        Restaurant res = new Restaurant(10l ,"Rasmus", test, test, test, "1000", cityInfo);
+        Restaurant res = new Restaurant(test, test, test, test, test, new CityInfo("8220","Århus"), test);
 //        Restaurant res = new Restaurant(test, test, test, test, 0, cityInfo);
 
-//        rf.addRestaurant(res); 
-        RestaurantDTO l = rf.getRestaurantDTOById(10l);
+        rf.addRestaurant(res); 
+        RestaurantDTO l = rf.getRestaurantDTOByNameAndPhone("test","test");
         //List<RestaurantDTO> l = rf.getAllRestaurants();
         String json = gson.toJson(l);
         System.out.println(json);

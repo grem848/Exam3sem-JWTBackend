@@ -3,8 +3,11 @@ package entity;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -14,6 +17,9 @@ public class CityInfo implements Serializable {
     @Id
     private String zipCode;
     private String city;
+    
+    @OneToMany(mappedBy = "cityInfo")
+    private Collection<Restaurant> restaurants = new ArrayList<>();
 
     /**
      *
@@ -31,6 +37,19 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
+    public Collection<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Collection<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurants.add(restaurant);
+    }
+    
+    
     /**
      *
      * @return
@@ -61,6 +80,11 @@ public class CityInfo implements Serializable {
      */
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "CityInfo{" + "zipCode=" + zipCode + ", city=" + city + ", restaurants=" + restaurants + '}';
     }
     
 }
