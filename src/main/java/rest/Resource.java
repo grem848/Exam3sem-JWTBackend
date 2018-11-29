@@ -97,7 +97,7 @@ public class Resource
     public String getFromAdmin()
     {
         String user = securityContext.getUserPrincipal().getName();
-        return "\"Hello from ADMIN" + user + "\""; // FRONTEND
+        return user; // FRONTEND
     }
 
     /**
