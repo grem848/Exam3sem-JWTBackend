@@ -30,9 +30,9 @@ public class CityInfoDTO
 
     public CityInfoDTO(CityInfo cityInfo)
     {
-        this.zip = cityInfo.getZipCode();
+        this.zip = cityInfo.getZip();
         this.city = cityInfo.getCity();
-        this.cityZip = cityInfo.getCity() + ", " + cityInfo.getZipCode();
+        this.cityZip = cityInfo.getCity() + ", " + cityInfo.getZip();
     }
 
     /**

@@ -15,7 +15,7 @@ public class CityInfo implements Serializable {
 
 
     @Id
-    private String zipCode;
+    private String zip;
     private String city;
     
     @OneToMany(mappedBy = "cityInfo")
@@ -33,7 +33,7 @@ public class CityInfo implements Serializable {
      * @param city
      */
     public CityInfo(String zipCode, String city) {
-        this.zipCode = zipCode;
+        this.zip = zipCode;
         this.city = city;
     }
 
@@ -54,16 +54,16 @@ public class CityInfo implements Serializable {
      *
      * @return
      */
-    public String getZipCode() {
-        return zipCode;
+    public String getZip() {
+        return zip;
     }
 
     /**
      *
-     * @param zipCode
+     * @param zip
      */
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     /**
@@ -84,7 +84,7 @@ public class CityInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "CityInfo{" + "zipCode=" + zipCode + ", city=" + city + ", restaurants=" + restaurants + '}';
+        return "CityInfo{" + "zipCode=" + zip + ", city=" + city + ", restaurants=" + restaurants + '}';
     }
     
 }

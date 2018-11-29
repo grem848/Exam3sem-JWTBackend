@@ -52,7 +52,7 @@ public class RestaurantFacade {
         Collection<Restaurant> list = new ArrayList<>();
         list.add(restaurant);
 
-        CityInfo ci = em.find(CityInfo.class, restaurant.getCityInfo().getZipCode());
+        CityInfo ci = em.find(CityInfo.class, restaurant.getCityInfo().getZip());
 
         if (ci != null) {
             //ci.setRestaurants(list);
