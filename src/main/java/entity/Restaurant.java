@@ -200,7 +200,7 @@ public class Restaurant implements Serializable {
                 "\n" + street + 
                 "\n" + website + 
                 "\n" + cityInfo.getCity() +
-                "\n" + cityInfo.getZipCode() + "\n";
+                "\n" + cityInfo.getZip() + "\n";
     }
     
 }

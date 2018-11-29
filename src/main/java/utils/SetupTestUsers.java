@@ -8,7 +8,6 @@ import entity.Restaurant;
 import facade.RestaurantFacade;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Persistence;
 
 
@@ -37,7 +36,7 @@ public class SetupTestUsers
         //List<RestaurantDTO> l = rf.getAllRestaurants();
         String json = gson.toJson(l);
         System.out.println(json);
-//            EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+////           EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
 //    
 //    // IMPORTAAAAAAAAAANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //    // This breaks one of the MOST fundamental security rules in that it ships with default users and passwords

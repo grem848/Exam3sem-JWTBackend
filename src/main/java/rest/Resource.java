@@ -26,6 +26,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -116,7 +117,6 @@ public class Resource
 
         List<RestaurantDTO> restaurantList = rf.getAllRestaurants();
         String json = gson.toJson(restaurantList);
-        System.out.println(json);
 
         if (restaurantList != null)
         {
@@ -142,15 +142,14 @@ public class Resource
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("edit")
-    public Response editRestaurants(String json)
+    @Path("edit/{id}")
+    public Response editRestaurant(@PathParam("id") String id, String json)
     {
 
         Restaurant r = gson.fromJson(json, Restaurant.class);
         
-        if (rf.getRestaurantDTOById(r.getId()) != null)
+        if (rf.getRestaurantDTOById(Long.parseLong(id)) != null)
         {
-            System.out.println("Intered");
             RestaurantDTO editedRestaurant = rf.editRestaurant(r);
             
             return Response
@@ -179,7 +178,6 @@ public class Resource
     {
 
         Restaurant r = gson.fromJson(json, Restaurant.class);
-        System.out.println(r.toString());
         if (rf.getRestaurantDTOByNameAndPhone(r.getName(),r.getPhone()) == null)
         {
 
@@ -277,4 +275,33 @@ public class Resource
 
         }
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("restaurant/{id}")
+    public Response getRestaurant(@PathParam("id") String id)
+    {
+        RestaurantDTO restaurant = rf.getRestaurantDTOById(Long.parseLong(id));
+    
+        if (restaurant != null)
+        {
+            
+            return Response
+                    .status(200)
+                    .entity(gson.toJson(restaurant))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        } else
+        { 
+            JsonObject error = new JsonObject();
+            error.addProperty("ErrorMessage", "Restaurant Does not exist");
+
+            return Response
+                    .status(500)
+                    .entity(error)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+    }
+    
 }
