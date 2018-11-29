@@ -51,7 +51,7 @@ public class RestaurantDTO {
         this.street = restaurant.getAddress();
         this.phone = restaurant.getPhone();
         this.cityInfo = new CityInfoDTO(restaurant.getCityInfo());
-        this.pictureUrl = pictureUrl;
+        this.pictureUrl = restaurant.getPictureurl();
     }
 
     /**
