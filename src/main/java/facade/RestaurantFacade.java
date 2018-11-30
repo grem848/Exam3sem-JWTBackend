@@ -18,6 +18,12 @@ import static javax.ws.rs.client.Entity.json;
 /*
 * @author mohammahomarhariri
 */
+
+/**
+ *
+ * @author RasmusFriis
+ */
+
 public class RestaurantFacade {
 
 
@@ -104,6 +110,10 @@ public class RestaurantFacade {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOtherRestaurants() {
 
         String result = "Error";
@@ -131,6 +141,11 @@ public class RestaurantFacade {
 
     }
 
+    /**
+     *
+     * @param restaurant
+     * @return
+     */
     public RestaurantDTO editRestaurant(Restaurant restaurant) {
         EntityManager em = getEntityManager();
         
@@ -148,6 +163,12 @@ public class RestaurantFacade {
         return getRestaurantDTOById(restaurant.getId());
     }
 
+    /**
+     *
+     * @param name
+     * @param phone
+     * @return
+     */
     public RestaurantDTO getRestaurantDTOByNameAndPhone(String name, String phone) {
         
         EntityManager em = getEntityManager();
@@ -164,6 +185,11 @@ public class RestaurantFacade {
         return restaurant;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public RestaurantDTO getRestaurantDTOById(Long id) {
         EntityManager em = getEntityManager();
         RestaurantDTO restaurant = null;

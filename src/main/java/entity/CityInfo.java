@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 @Entity
 public class CityInfo implements Serializable {
 
@@ -37,14 +40,26 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     public Collection<Restaurant> getRestaurants() {
         return restaurants;
     }
 
+    /**
+     *
+     * @param restaurants
+     */
     public void setRestaurants(Collection<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 
+    /**
+     *
+     * @param restaurant
+     */
     public void addRestaurant(Restaurant restaurant){
         this.restaurants.add(restaurant);
     }

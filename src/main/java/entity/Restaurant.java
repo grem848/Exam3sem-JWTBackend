@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 @Entity
 public class Restaurant implements Serializable {
 
@@ -49,6 +52,16 @@ public class Restaurant implements Serializable {
         this.pictureUrl = pictureUrl;
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param foodtype
+     * @param website
+     * @param address
+     * @param phone
+     * @param cityInfo
+     */
     public Restaurant(Long id, String name, String foodtype, String website, String address, String phone, CityInfo cityInfo) {
         this.id = id;
         this.restName = name;

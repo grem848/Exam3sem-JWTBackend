@@ -31,6 +31,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+/**
+ *
+ * @author RasmusFriis
+ */
 @Path("info")
 public class Resource
 {
@@ -139,6 +143,12 @@ public class Resource
         }
     }
     
+    /**
+     *
+     * @param id
+     * @param json
+     * @return
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -170,6 +180,11 @@ public class Resource
         }
     }
     
+    /**
+     *
+     * @param json
+     * @return
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -202,6 +217,10 @@ public class Resource
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("allrestaurants")
@@ -276,6 +295,11 @@ public class Resource
         }
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("restaurant/{id}")
