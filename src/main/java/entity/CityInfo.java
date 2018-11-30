@@ -3,8 +3,11 @@ package entity;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -12,8 +15,11 @@ public class CityInfo implements Serializable {
 
 
     @Id
-    private String zipCode;
+    private String zip;
     private String city;
+    
+    @OneToMany(mappedBy = "cityInfo")
+    private Collection<Restaurant> restaurants = new ArrayList<>();
 
     /**
      *
@@ -27,24 +33,37 @@ public class CityInfo implements Serializable {
      * @param city
      */
     public CityInfo(String zipCode, String city) {
-        this.zipCode = zipCode;
+        this.zip = zipCode;
         this.city = city;
     }
 
+    public Collection<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Collection<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurants.add(restaurant);
+    }
+    
+    
     /**
      *
      * @return
      */
-    public String getZipCode() {
-        return zipCode;
+    public String getZip() {
+        return zip;
     }
 
     /**
      *
-     * @param zipCode
+     * @param zip
      */
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     /**
@@ -61,6 +80,11 @@ public class CityInfo implements Serializable {
      */
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "CityInfo{" + "zipCode=" + zip + ", city=" + city + ", restaurants=" + restaurants + '}';
     }
     
 }

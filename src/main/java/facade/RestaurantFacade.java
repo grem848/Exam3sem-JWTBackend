@@ -1,21 +1,25 @@
-
 package facade;
 
 import DTO.RestaurantDTO;
+import entity.CityInfo;
 import entity.Restaurant;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
+import static javax.ws.rs.client.Entity.json;
 
+/*
+* @author mohammahomarhariri
+*/
+public class RestaurantFacade {
 
-public class RestaurantFacade
-{
-/**
- *
- * @author mohammahomarhariri
- */
 
     private EntityManagerFactory emf;
 
@@ -43,21 +47,41 @@ public class RestaurantFacade
      * @return
      */
     public RestaurantDTO addRestaurant(Restaurant restaurant) {
+
         EntityManager em = getEntityManager();
-        try {
+        Collection<Restaurant> list = new ArrayList<>();
+        list.add(restaurant);
 
-            em.getTransaction().begin();
-            em.persist(restaurant);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            System.out.println(ex);
-            em.close();
-            return null;
+        CityInfo ci = em.find(CityInfo.class, restaurant.getCityInfo().getZip());
+
+        if (ci != null) {
+            //ci.setRestaurants(list);
+            ci.addRestaurant(restaurant);
+            try {
+
+                em.getTransaction().begin();
+                em.merge(ci);
+                em.getTransaction().commit();
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+                em.close();
+                return null;
+            }
+        } else {
+            try {
+                em.getTransaction().begin();
+                em.persist(restaurant);
+                em.getTransaction().commit();
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+                em.close();
+                return null;
+            }
         }
-
-        em.close();
-
-        return null;
+        
+        return getRestaurantDTOByNameAndPhone(restaurant.getName(), restaurant.getPhone());
     }
 
     /**
@@ -66,11 +90,11 @@ public class RestaurantFacade
      * @return returns all restaurants from DataBase
      */
     public List<RestaurantDTO> getAllRestaurants() {
+
         EntityManager em = getEntityManager();
         List<RestaurantDTO> restaurants = null;
 
-        try
-        {
+        try {
             restaurants = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.restName, p.foodType, p.website, p.street, p.phone, p.cityInfo, p.pictureUrl) from Restaurant p", RestaurantDTO.class).getResultList();
 //               public RestaurantDTO(Long id, String restName, String foodType, String website, String street, String phone, CityInfo cityInfo, String pictureUrl)
             return restaurants;
@@ -80,52 +104,76 @@ public class RestaurantFacade
         }
     }
 
+    public String getOtherRestaurants() {
+
+        String result = "Error";
+        try {
+            URL url = new URL("https://oloye.dk/api/info/getlist");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Accept", "application/json;charset=UTF-8");
+//            con.setRequestProperty("User-Agent", "server");
+
+            Scanner scan = new Scanner(con.getInputStream());
+            String jsonStr = "";
+
+            while (scan.hasNext()) {
+                jsonStr += scan.nextLine();
+            }
+            scan.close();
+            Charset.forName("UTF-8").encode(jsonStr);
+            return jsonStr;
+
+        } catch (Exception e) {
+            result = "->Red<-" + e;
+        }
+        return "\"" + result + "\"";
+
+    }
+
     public RestaurantDTO editRestaurant(Restaurant restaurant) {
         EntityManager em = getEntityManager();
+        
+        try {
 
-        Restaurant res = em.find(Restaurant.class, restaurant.getId());
-        if (res != null) {
-            try {
+            em.getTransaction().begin();
+            em.merge(restaurant);
+            em.getTransaction().commit();
 
-                em.getTransaction().begin();
-                em.merge(restaurant);
-                em.getTransaction().commit();
-
-            } catch (Exception ex) {
-                System.out.println(ex);
-                em.close();
-            }
-
-            return getRestaurantDTOById(restaurant.getId());
-        } else {
-            return null;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            em.close();
         }
 
+        return getRestaurantDTOById(restaurant.getId());
     }
-    
-    public RestaurantDTO getRestaurantDTOById(Long id){
+
+    public RestaurantDTO getRestaurantDTOByNameAndPhone(String name, String phone) {
+        
         EntityManager em = getEntityManager();
         RestaurantDTO restaurant = null;
-            try{
-            restaurant = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.name, p.foodtype, p.website, p.address, p.phone, p.cityInfo) from Restaurant p WHERE p.id = :id", RestaurantDTO.class)
-                    .setParameter("id",id)
+        try {
+            restaurant = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.restName, p.foodType, p.website, p.street, p.phone, p.cityInfo, p.pictureUrl) from Restaurant p WHERE p.restName = :name AND p.phone = :phone", RestaurantDTO.class)
+                    .setParameter("name", name)
+                    .setParameter("phone", phone)
                     .getSingleResult();
-           }catch(NoResultException ex){
-                System.out.println("No Result " + ex);
-           }   
+            
+        } catch (NoResultException ex) {
+            System.out.println("No Result " + ex);
+        }
         return restaurant;
     }
-    
-    public Restaurant getRestaurantById(Long id){
+
+    public RestaurantDTO getRestaurantDTOById(Long id) {
         EntityManager em = getEntityManager();
-        Restaurant restaurant = null;
-            try{
-            restaurant = em.createQuery("SELECT p from Restaurant p WHERE p.id = :id", Restaurant.class)
-                    .setParameter("id",id)
+        RestaurantDTO restaurant = null;
+        try {
+            restaurant = em.createQuery("SELECT NEW DTO.RestaurantDTO(p.id, p.restName, p.foodType, p.website, p.street, p.phone, p.cityInfo, p.pictureUrl) from Restaurant p WHERE p.id = :id", RestaurantDTO.class)
+                    .setParameter("id", id)
                     .getSingleResult();
-           }catch(NoResultException ex){
-                System.out.println("No Result " + ex);
-           }   
+        } catch (NoResultException ex) {
+            System.out.println("No Result " + ex);
+        }
         return restaurant;
     }
 }

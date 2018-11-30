@@ -1,9 +1,10 @@
-
 package DTO;
 
+import entity.CityInfo;
 
-public class CityInfoDTO {
-    
+public class CityInfoDTO
+{
+
     private String zip;
     private String city;
     private String cityZip;
@@ -14,23 +15,32 @@ public class CityInfoDTO {
     public CityInfoDTO()
     {
     }
-    
+
     /**
      *
      * @param zipCode
      * @param city
      */
-    public CityInfoDTO(String zipCode, String city) {
-        this.city = city;
-        this.zip = zipCode;
-        this.cityZip = city + ", " + zipCode;
+//    public CityInfoDTO(String zipCode, String city)
+//    {
+//        this.city = city;
+//        this.zip = zipCode;
+//        this.cityZip = city + ", " + zipCode;
+//    }
+
+    public CityInfoDTO(CityInfo cityInfo)
+    {
+        this.zip = cityInfo.getZip();
+        this.city = cityInfo.getCity();
+        this.cityZip = cityInfo.getCity() + ", " + cityInfo.getZip();
     }
 
     /**
      *
      * @return
      */
-    public String getZipCode() {
+    public String getZipCode()
+    {
         return zip;
     }
 
@@ -38,7 +48,8 @@ public class CityInfoDTO {
      *
      * @param zipCode
      */
-    public void setZipCode(String zipCode) {
+    public void setZipCode(String zipCode)
+    {
         this.zip = zipCode;
     }
 
@@ -46,7 +57,8 @@ public class CityInfoDTO {
      *
      * @return
      */
-    public String getCity() {
+    public String getCity()
+    {
         return city;
     }
 
@@ -54,7 +66,8 @@ public class CityInfoDTO {
      *
      * @param city
      */
-    public void setCity(String city) {
+    public void setCity(String city)
+    {
         this.city = city;
     }
 
