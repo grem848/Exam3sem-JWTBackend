@@ -1,6 +1,7 @@
 package DTO;
 
 import entity.CityInfo;
+import java.util.Objects;
 
 /**
  *
@@ -99,5 +100,45 @@ public class CityInfoDTO
     {
         return "CityInfoDTO{" + "zipCode=" + zip + ", city=" + city + ", cityZip=" + cityZip + '}';
     }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final CityInfoDTO other = (CityInfoDTO) obj;
+        if (!Objects.equals(this.zip, other.zip))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.cityZip, other.cityZip))
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

@@ -3,6 +3,7 @@ package DTO;
 
 import entity.CityInfo;
 import entity.Restaurant;
+import java.util.Objects;
 
 /**
  *
@@ -247,4 +248,63 @@ public class RestaurantDTO {
         return "RestaurantDTO{" + "id=" + id + ", restName=" + restName + ", foodType=" + foodType + ", website=" + website + ", street=" + street + ", phone=" + phone + ", pictureUrl=" + pictureUrl + ", cityInfo=" + cityInfo + '}';
     }
 
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final RestaurantDTO other = (RestaurantDTO) obj;
+        if (!Objects.equals(this.restName, other.restName))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.foodType, other.foodType))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.website, other.website))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.street, other.street))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.phone, other.phone))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.pictureUrl, other.pictureUrl))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.cityInfo, other.cityInfo))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

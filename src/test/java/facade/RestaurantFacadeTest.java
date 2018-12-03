@@ -32,10 +32,10 @@ public class RestaurantFacadeTest {
     }
     
         private static Connection testConnection;
-    private static final String USER = "root";
-    private static final String USERPW = "1cd5288";
-    private static final String DBNAME = "3semexamtest";
-    private static final String HOST = "localhost";
+    private static final String USER = "seed_user";
+    private static final String USERPW = "ostemad";
+    private static final String DBNAME = "seedtest";
+    private static final String HOST = "46.101.104.53";
     
     @Before
     public void setUp() {
@@ -56,8 +56,8 @@ public class RestaurantFacadeTest {
                 
                 
                
-                stmt.execute("drop table if exists restaurant");
-                stmt.execute("create table restaurant like restauranttest");
+                stmt.execute("drop table if exists RESTAURANT");
+                stmt.execute("create table RESTAURANT like seed.RESTAURANT");
                 
                 stmt.execute("SET FOREIGN_KEY_CHECKS=1;");
                 

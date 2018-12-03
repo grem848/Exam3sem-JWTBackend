@@ -14,11 +14,11 @@ import java.sql.SQLException;
  * @author andre
  */
 class Connector {
-    private static final String HOST = "jdbc:mysql://localhost:3306/3semexamtest";
-    private static final String DBNAME = "3semexamtest";
+    private static final String HOST = "jdbc:mysql://46.101.104.53:3306/seedtest";
+    private static final String DBNAME = "seedtest";
     private static final String URL = String.format("jdbc:mysql://%s:3306/%s", HOST, DBNAME);
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "1cd5288";
+    private static final String USERNAME = "seed_user";
+    private static final String PASSWORD = "ostemad";
     private static Connection singleton;
 
     public static void setConnection(Connection con) {
