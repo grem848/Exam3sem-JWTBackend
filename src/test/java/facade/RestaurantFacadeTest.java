@@ -18,15 +18,16 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
- 
+
 public class RestaurantFacadeTest {
     
     RestaurantFacade rf = new RestaurantFacade(Persistence.createEntityManagerFactory("pusecond"));
     
     EntityManagerFactory emf;
     
-    
-    
+    /**
+     *
+     */
     public RestaurantFacadeTest() {
         Persistence.generateSchema("pusecond", null);
     }
@@ -37,6 +38,9 @@ public class RestaurantFacadeTest {
     private static final String DBNAME = "seedtest";
     private static final String HOST = "46.101.104.53";
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
                 try {
@@ -98,6 +102,9 @@ public class RestaurantFacadeTest {
         
     }
     
+    /**
+     *
+     */
     @Test
     public void testAddRestaurant2(){
         CityInfo ci = new CityInfo("2100", "kina");
@@ -108,6 +115,9 @@ public class RestaurantFacadeTest {
         
     }
     
+    /**
+     *
+     */
     @Test
     public void testAddRestaurantFullObject(){
   
@@ -147,6 +157,10 @@ public class RestaurantFacadeTest {
         assertTrue(rf.getAllRestaurants().contains(rDTO));
          
     }
+
+    /**
+     *
+     */
     @Test
     public void testget10restaurants(){
     CityInfo ci = new CityInfo("2100", "kina");
@@ -174,6 +188,9 @@ public class RestaurantFacadeTest {
     assertEquals(10, rf.getAllRestaurants().size());
 }
     
+    /**
+     *
+     */
     @Test
     public void testEquals10Restaurants(){    
     Collection<RestaurantDTO> list = new ArrayList<>();

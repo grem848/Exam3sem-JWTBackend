@@ -24,16 +24,7 @@ public class CityInfoDTO
     /**
      *
      * @param cityInfo
-     * @param zipCode
-     * @param city
      */
-//    public CityInfoDTO(String zipCode, String city)
-//    {
-//        this.city = city;
-//        this.zip = zipCode;
-//        this.cityZip = city + ", " + zipCode;
-//    }
-
     public CityInfoDTO(CityInfo cityInfo)
     {
         this.zip = cityInfo.getZip();
@@ -138,7 +129,5 @@ public class CityInfoDTO
         }
         return true;
     }
-    
-    
 
 }
