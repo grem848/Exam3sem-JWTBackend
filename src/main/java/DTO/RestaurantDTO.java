@@ -4,11 +4,50 @@ package DTO;
 import entity.CityInfo;
 import entity.Restaurant;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 public class RestaurantDTO {
     
+    /**
+     *
+     */
     public Long id;
-    public String restName, foodType, website, street, phone, pictureUrl;
+
+    /**
+     *
+     */
+    public String restName,
+
+    /**
+     *
+     */
+    foodType,
+
+    /**
+     *
+     */
+    website,
+
+    /**
+     *
+     */
+    street,
+
+    /**
+     *
+     */
+    phone,
+
+    /**
+     *
+     */
+    pictureUrl;
+
+    /**
+     *
+     */
     public CityInfoDTO cityInfo;
 
     /**
@@ -42,6 +81,10 @@ public class RestaurantDTO {
         
     }
     
+    /**
+     *
+     * @param restaurant
+     */
     public RestaurantDTO(Restaurant restaurant) {
         
         this.id = restaurant.getId();
@@ -180,11 +223,19 @@ public class RestaurantDTO {
         this.pictureUrl = pictureUrl;
     }
 
+    /**
+     *
+     * @return
+     */
     public CityInfoDTO getCityInfo()
     {
         return cityInfo;
     }
 
+    /**
+     *
+     * @param cityInfo
+     */
     public void setCityInfo(CityInfoDTO cityInfo)
     {
         this.cityInfo = cityInfo;

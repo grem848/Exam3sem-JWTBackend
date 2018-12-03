@@ -7,7 +7,10 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 public class Call implements Callable<String>
 {
 

@@ -11,7 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {

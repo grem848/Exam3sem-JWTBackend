@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Persistence;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 public class SetupTestUsers
 {
 

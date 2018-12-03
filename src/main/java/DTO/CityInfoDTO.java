@@ -2,6 +2,10 @@ package DTO;
 
 import entity.CityInfo;
 
+/**
+ *
+ * @author RasmusFriis
+ */
 public class CityInfoDTO
 {
 
@@ -18,6 +22,7 @@ public class CityInfoDTO
 
     /**
      *
+     * @param cityInfo
      * @param zipCode
      * @param city
      */

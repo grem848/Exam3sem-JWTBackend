@@ -7,8 +7,10 @@ import java.security.SecureRandom;
  * A server restart, will generate a new key, making all existing tokens invalid
  * For production (and if a load-balancer is used) come up with a persistent key strategy */
 
-
-
+/**
+ *
+ * @author RasmusFriis
+ */
 public class SharedSecret {
     private static byte[] secret;
 

@@ -1,6 +1,9 @@
 package exceptions;
 
-
+/**
+ *
+ * @author RasmusFriis
+ */
 public class NotFoundException extends Exception{
 
     /**
