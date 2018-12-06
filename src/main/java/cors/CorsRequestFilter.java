@@ -10,10 +10,7 @@ import javax.ws.rs.ext.Provider;
 
 //Comment out these two annotations below to disable CORS-handling
 
-/**
- *
- * @author Andreas Heick Laptop
- */
+
 @Provider  //This will ensure that the filter is used "automatically"
 @PreMatching
 public class CorsRequestFilter implements ContainerRequestFilter {

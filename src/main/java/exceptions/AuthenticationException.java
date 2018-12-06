@@ -1,9 +1,6 @@
 package exceptions;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class AuthenticationException extends Exception{
 
     /**

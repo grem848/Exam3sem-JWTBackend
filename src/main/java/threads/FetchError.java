@@ -1,10 +1,7 @@
 
 package threads;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class FetchError
 {
     private String error;

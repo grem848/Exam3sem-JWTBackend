@@ -9,10 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author andre
- */
+
 class Connector {
     private static final String HOST = "jdbc:mysql://46.101.104.53:3306/seedtest";
     private static final String DBNAME = "seedtest";

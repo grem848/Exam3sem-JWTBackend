@@ -3,10 +3,7 @@ package DTO;
 import entity.CityInfo;
 import java.util.Objects;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class CityInfoDTO
 {
 

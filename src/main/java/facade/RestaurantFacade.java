@@ -15,14 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import static javax.ws.rs.client.Entity.json;
 
-/*
-* @author mohammahomarhariri
-*/
 
-/**
- *
- * @author RasmusFriis
- */
 
 public class RestaurantFacade {
 

@@ -3,10 +3,7 @@ package utils;
 
 import javax.persistence.Persistence;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class Main
 {
 

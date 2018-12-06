@@ -26,10 +26,7 @@ import javax.ws.rs.core.Response;
 import exceptions.AuthenticationException;
 import exceptions.GenericExceptionMapper;
 
-/**
- *
- * @author RasmusFriis
- */
+
 @Path("login")
 public class LoginEndpoint {
 

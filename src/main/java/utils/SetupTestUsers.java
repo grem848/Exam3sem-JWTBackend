@@ -5,10 +5,7 @@ import entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class SetupTestUsers
 {
 

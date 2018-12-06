@@ -5,10 +5,7 @@ import entity.CityInfo;
 import entity.Restaurant;
 import java.util.Objects;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class RestaurantDTO {
     
     /**

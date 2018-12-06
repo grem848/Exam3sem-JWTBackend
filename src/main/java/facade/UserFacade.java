@@ -6,10 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import exceptions.AuthenticationException;
 
-/**
- *
- * @author RasmusFriis
- */
+
 public class UserFacade {
 
     //Default EntityManagerFactory
