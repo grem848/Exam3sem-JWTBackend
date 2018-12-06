@@ -48,13 +48,10 @@ public class RestaurantFacade {
     public RestaurantDTO addRestaurant(Restaurant restaurant) {
 
         EntityManager em = getEntityManager();
-        Collection<Restaurant> list = new ArrayList<>();
-        list.add(restaurant);
 
         CityInfo ci = em.find(CityInfo.class, restaurant.getCityInfo().getZip());
 
         if (ci != null) {
-            //ci.setRestaurants(list);
             ci.addRestaurant(restaurant);
             try {
 

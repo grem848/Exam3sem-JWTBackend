@@ -51,40 +51,6 @@ public class Resource
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-//    public String threadExecutor()
-//    {
-//        ExecutorService executor = Executors.newCachedThreadPool();
-//        List<Future<String>> list = new ArrayList<>();
-//        String response = "";
-//        for (String url : urls)
-//        {
-//            Callable<String> callable = new Call(url);
-//
-//            Future<String> future = executor.submit(callable);
-//
-//            list.add(future);
-//        }
-//        response = "[";
-//        for (Future<String> fut : list)
-//        {
-//            try
-//            {
-//                String fetchedData = fut.get();
-//                if (!fetchedData.contains("error"))
-//                {
-//                    response += fetchedData + ",";
-//                }
-//
-//            } catch (InterruptedException | ExecutionException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        executor.shutdown();
-//        String substring = response.substring(0, response.length() - 1); // if all fails ] will be deleted here
-//        response = substring;
-//        return response += "]";
-//    }
     @Context
     SecurityContext securityContext;
 
@@ -226,7 +192,6 @@ public class Resource
         List<RestaurantDTO> restaurants = rf.getAllRestaurants();
 
         String remote = rf.getOtherRestaurants();
-        System.out.println(remote); // remove when UTF-8 works
 
         if (remote.contains("->Red<-"))
         {
@@ -236,8 +201,6 @@ public class Resource
         if (remote != null)
         {
             long nextID = (restaurants.get(restaurants.size() - 1).id + 1);
-
-            System.out.println(remote);
 
             JsonArray jo = jsonParser.parse(remote).getAsJsonArray();
             List<RestaurantDTO> list = new ArrayList<>();
