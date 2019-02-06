@@ -116,7 +116,7 @@ public class Resource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("edit/{id}")
-    public Response editRestaurant(@PathParam("id") String id, String json)
+    public Response editRestaurant(@PathParam("id") String id, String json) // Add authentication security or everyone can edit
     {
 
         Restaurant r = gson.fromJson(json, Restaurant.class);
@@ -152,7 +152,7 @@ public class Resource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("create")
-    public Response addRestaurants(String json)
+    public Response addRestaurants(String json)  // Add authentication security or everyone can create
     {
 
         Restaurant r = gson.fromJson(json, Restaurant.class);
