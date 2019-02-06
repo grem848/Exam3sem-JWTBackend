@@ -116,6 +116,7 @@ public class Resource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("edit/{id}")
+    // @RolesAllowed("admin") // add this for security
     public Response editRestaurant(@PathParam("id") String id, String json) // Add authentication security or everyone can edit
     {
 
@@ -152,6 +153,7 @@ public class Resource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("create")
+    // @RolesAllowed("admin") // add this for security
     public Response addRestaurants(String json)  // Add authentication security or everyone can create
     {
 
